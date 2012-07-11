@@ -1,5 +1,11 @@
 import sublime, sublime_plugin, subprocess
 
+# Todo:
+# - Make the sidebar cope with multiple selections
+# - Output the results of the sidebar run to a new window, like find
+# - Output the results of the save run to a new panel, like exec
+# - Make the onsave asynchronous to stop Sublime moaning about time to run
+
 # Run phpcs, used in other commands
 def runPhpCs(path):
     command = "phpcs --standard=Made " + path
