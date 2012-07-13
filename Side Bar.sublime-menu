@@ -1,5 +1,5 @@
 [
     { "caption": "Made", "id" : "made", "children" : [
-        { "caption": "PHPCS", "id": "phpcs", "command": "php_cs_sidebar", "args": {"paths": []} }
+        { "caption": "PHPCS", "id": "phpcs", "command": "phpcs_sidebar", "args": {"paths": []} }
     ]}
 ]
