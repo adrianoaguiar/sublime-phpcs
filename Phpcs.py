@@ -1,39 +1,58 @@
 import sublime, sublime_plugin, subprocess
 
 # Todo:
-# - Make the sidebar cope with multiple selections
-# - Output the results of the sidebar run to a new window, like find
-# - Output the results of the save run to a unique panel, like exec
-# - Make the phpcs run async to speed things up
+# - Make the status bar show if it won't run on a single file (not sidebar)
+# - Make the sidebar show if the file was ok (and no results are shown)
+# - Make filenames in results clickable
+# - Should functions be outside classes?
 
 # Run phpcs, used in other commands
 def runPhpCs(path):
-    command = "phpcs --standard=Made " + path
+    command = "phpcs --standard=Made \"" + path + "\""
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
     stdOut = process.communicate()[0]
     returnCode = process.returncode
     return stdOut
 
-# run phpcs as a window command from a hotkey
+# Get the output view
+def getOutputView():
+    window = sublime.active_window()
+    view = window.new_file()
+    view.set_name('PHPCS Results')
+    view.set_scratch(True)
+    return view
+
+# Send to an output view
+def sendToView(view, text):
+    edit = view.begin_edit()
+    view.replace(edit, sublime.Region(0, view.size()), text)
+    view.sel().clear()
+    view.end_edit(edit)
+
+# Check if a file is PHP
+def isPhpFile(path):
+    return path.endswith(".php")
+
+# Run phpcs as a window command from a hotkey
 class PhpcsCommand(sublime_plugin.WindowCommand):
     def run(self):
-        view = self.window.active_view()
-        fileName = view.file_name()
-        if not fileName:
-            sublime.error_message("You need to save the file to disk before running phpcs")
+        path = self.window.active_view().file_name()
+        if not path:
+            sublime.error_message("You need to save the file before running phpcs")
             return
-        elif fileName.endswith(".php"):
-            result = runPhpCs(fileName);
+        elif isPhpFile(path):
+            result = runPhpCs(path)
             if result:
-                print result
-                if view.settings().get("made_phpcs_triggerconsole"):
-                    view.window().run_command("show_panel", {"panel": "console"});
+                view = getOutputView()
+                sendToView(view, result)
 
-# run phpcs from the sidebar
+# Run phpcs from the sidebar
 class PhpcsSidebarCommand(sublime_plugin.WindowCommand):
     def run(self, paths):
-        result = runPhpCs(paths[0]);
+        result = ""
+        for path in paths:
+            if isPhpFile(path):
+                result = result + runPhpCs(path)
         if result:
-            print result
-            if self.window.active_view().settings().get("made_phpcs_triggerconsole"):
-                self.window.run_command("show_panel", {"panel": "console"});
+            view = getOutputView()
+            sendToView(view, result)
