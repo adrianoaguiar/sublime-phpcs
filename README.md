@@ -2,15 +2,15 @@
 
 A basic Sublime plugin to run PHPCS on save and via the sidebar menu
 
-## Installation
-
-### Pre-Requisites
+## Pre-Requisites
 
 * [PHPCS](http://pear.php.net/package/PHP_CodeSniffer)
 * The [Made PHPCS standard](https://github.com/madedotcom/phpcs-magento-rules)
   installed into the PHPCS standards directory
 
 The recommended method of installation is via Package Control.
+
+## Installation
 
 ### Package Control
 
