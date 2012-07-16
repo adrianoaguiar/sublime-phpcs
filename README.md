@@ -8,9 +8,10 @@ A basic Sublime plugin to run PHPCS on save and via the sidebar menu
 * The [Made PHPCS standard](https://github.com/madedotcom/phpcs-magento-rules)
   installed into the PHPCS standards directory
 
-The recommended method of installation is via Package Control.
 
 ## Installation
+
+The recommended method of installation is via Package Control.
 
 ### Package Control
 
