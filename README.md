@@ -16,7 +16,7 @@ The recommended method of installation is via Package Control.
 
 * Install Package Control (if not already installed) by using
   [these instructions](http://wbond.net/sublime_packages/package_control/installation)
-* Add this repository by using `Package Control: Add Respository` and using the
+* Add this repository by using `Package Control: Add Repository` and using the
   URL of `https://github.com/madedotcom/sublime-phpcs`
 * Install by using `Package Control: Install Package` and typing in `Phpcs`
 
