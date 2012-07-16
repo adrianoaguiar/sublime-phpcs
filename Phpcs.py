@@ -1,11 +1,5 @@
 import sublime, sublime_plugin, subprocess
 
-# Todo:
-# - Make the status bar show if it won't run on a single file (not sidebar)
-# - Make the sidebar show if the file was ok (and no results are shown)
-# - Make filenames in results clickable
-# - Should functions be outside classes?
-
 # Run phpcs, used in other commands
 def runPhpCs(path):
     command = "phpcs --standard=Made \"" + path + "\""
