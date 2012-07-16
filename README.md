@@ -1,13 +1,12 @@
-# sublime-phpcs
+# Sublime PHPCS Plugin
 
-A basic Sublime plugin to run PHPCS on save and via the sidebar menu
+A basic Sublime plugin to check file(s) against the [Made PHPCS standard](https://github.com/madedotcom/phpcs-magento-rules).
 
 ## Pre-Requisites
 
 * [PHPCS](http://pear.php.net/package/PHP_CodeSniffer)
 * The [Made PHPCS standard](https://github.com/madedotcom/phpcs-magento-rules)
   installed into the PHPCS standards directory
-
 
 ## Installation
 
